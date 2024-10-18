@@ -1,0 +1,36 @@
+<!--<p>home-job works!</p>-->
+<!-- src/app/components/home-job/home-job.component.html -->
+
+<div>
+  <h2>Most Recent Jobs</h2>
+  <ul>
+    <li *ngFor="let job of recentJobs">
+      <strong>{{ job.description }}</strong>
+      <p>{{ job.requirements }}</p>
+      <p>Posted by: {{ job.posterName }}</p>
+      <p>Expires: {{ job.expirationDate | date:'short' }}</p>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Most Active Jobs</h2>
+  <ul>
+    <li *ngFor="let job of activeJobs">
+      <strong>{{ job.description }}</strong>
+      <p>Lowest Bid: {{ job.lowestBid | currency }}</p>
+      <p>Number of Bids: {{ job.bidCount }}</p>
+      <p>Expires: {{ job.expirationDate | date:'short' }}</p>
+      <p>Time Remaining: {{ job.expirationDate | date:'short' }}</p>
+
+      <!-- Bid Form -->
+      <input type="number" [(ngModel)]="newBidAmount" placeholder="Enter your bid amount" />
+      <button (click)="placeBid(job.jobId)">Place Bid</button>
+    </li>
+  </ul>
+</div>
+
+<!-- Button to navigate to create job listing -->
+<div>
+  <button routerLink="/create-job">Create New Job Listing</button>
+</div>
